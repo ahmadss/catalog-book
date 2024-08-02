@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: book-catalog-v2
+
+  datasource:
+    hikari:
+      connection-timeout: 600000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      maximum-pool-size: 10
+    url: jdbc:postgresql://127.0.0.1/catalog_book
+    username: postgres
+    password: 123456
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch_size: 100
+        order_inserts: true
+    show-sql: true
+
+server:
+  port: 8088
+app:
+  welcome-text: Hello World faaaaa d;skdf rom teggy  kdsjhd dari properties
+  timezone: Asia/Jakarta
+  currency: IDR
+cloud:
+  api-key: ${CLOUD_KEY}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: development
+server:
+  port: 8090
+
+---
+spring:
+  config:
+    activate:
+      on-profile: stagging
+server:
+  port: 8081
+
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+server:
+  port: 8083
